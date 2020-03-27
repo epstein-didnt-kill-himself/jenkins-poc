@@ -1,21 +1,82 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-helmfile-config
 cluster:
+  clusterName: epstein-didnt-kill-himself
+  devEnvApprovers:
+  - epstein-didnt-kill-himself
+  environmentGitOwner: epstein-didnt-kill-himself
   gitKind: github
   gitName: github
   gitServer: https://github.com
   namespace: jx
+  provider: minikube
+  registry: 10.8.1.202:5000
 environments:
-- key: dev
-- key: staging
-  remoteCluster: false
-- key: production
-  remoteCluster: false
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-epstein-didnt-kill-himself-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-epstein-didnt-kill-himself-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-epstein-didnt-kill-himself-production
 gitops: true
 helmfile: true
+ingress:
+  domain: 10.8.1.202.nip.io
+  externalDNS: false
+  ignoreLoadBalancer: true
+  namespaceSubDomain: -jx.
+  serviceType: NodePort
+  tls:
+    email: ""
+    enabled: false
+    production: false
 kaniko: true
 repository: nexus
 secretStorage: local
+storage:
+  backup:
+    enabled: false
+    url: ""
+  logs:
+    enabled: false
+    url: ""
+  reports:
+    enabled: false
+    url: ""
+  repository:
+    enabled: false
+    url: ""
+vault: {}
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: master
+  ref: v2.0.85
   url: https://github.com/jenkins-x-labs/jenkins-x-versions.git
 webhook: lighthouse
